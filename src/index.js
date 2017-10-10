@@ -18,7 +18,9 @@ const mongoose = require('mongoose');
 
 const mongoDB = 'mongodb://localhost/jwtLearn';
 
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, {
+    useMongoClient: true
+  });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
