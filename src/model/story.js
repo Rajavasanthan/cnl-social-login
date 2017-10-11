@@ -8,14 +8,12 @@ const StorySchema = new Schema({
     content: String,
     react: {
         UserId: { type: Schema.Types.ObjectId, ref: 'User' },
-        status: {type: String, 
-            required: true, 
-            enum: ['laugh', 'angry', 'sad', 'happy','like'], 
-            default: 'like'},
+        status: Number,
     },
     date: { type: Date, default: Date.now },
+    ownerId:{ type: Schema.Types.ObjectId, ref: 'User' },
 })
 
-var Story = mongoose.model('User', UserSchema);
-module.exports = User;
+var Story = mongoose.model('Story', StorySchema);
+module.exports = Story;
 

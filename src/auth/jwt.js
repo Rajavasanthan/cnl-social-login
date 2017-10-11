@@ -1,7 +1,7 @@
 const passport = require('passport');
 const passportJwt = require('passport-jwt');
 const config = require('../config');
-const User = require('../user');
+const User = require('../model/user');
 
 const jwtOptions = {
     jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeader(),
@@ -11,8 +11,8 @@ const jwtOptions = {
 };
 
 passport.use(new passportJwt.Strategy(jwtOptions, (payload, done) => {
+    console.log(payload)
     User.findOne({uid:parseInt(payload.sub)}).then((user)=>{
-        console.log('jwt user found!',user)
         if (user) {
             return done(null, user, payload);
         }

@@ -8,7 +8,6 @@ const UserSchema = new Schema({
     provider: String,
     uid:String,
     photoUrl:String,
-    storyId: [{ type: Schema.Types.ObjectId, ref: 'Story' }]
 })
 
 var User = mongoose.model('User', UserSchema);

@@ -1,59 +1,38 @@
 const express = require('express');
-const mustacheExpress = require('mustache-express');
 const config = require('./config');
 const passport = require('passport');
-const token = require('./token');
-const User = require('./user');
-require('./auth/jwt');
-require('./auth/google');
-require('./auth/facebook');
-
-// Generate the Token for the user authenticated in the request
-function generateUserToken(req, res) {
-    const accessToken = token.generateAccessToken(req.user.uid);
-    res.json(accessToken)
-}
-
 const mongoose = require('mongoose');
+var bodyParser = require('body-parser')
+
+const authRouter = require('./auth_route');
+const userRouter = require('./user_route');
+const storyRouter = require('./story_route');
 
 const mongoDB = 'mongodb://localhost/jwtLearn';
-
 mongoose.connect(mongoDB, {
     useMongoClient: true
   });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-const app = express();
 
+const app = express();
 app.use(passport.initialize());
 
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/api/authentication/google/start',
-    passport.authenticate('google', { session: false, scope: ['openid', 'profile', 'email'] }));
-app.get('/api/authentication/google/redirect',
-    passport.authenticate('google', { session: false }),
-    generateUserToken);
+// parse application/json
+app.use(bodyParser.json())
 
-app.get('/api/authentication/facebook/start',
-    passport.authenticate('facebook', { session: false }));
-app.get('/api/authentication/facebook/redirect',
-    passport.authenticate('facebook', { session: false }),
-    generateUserToken);
-
-    app.get('/', (req, res) => {
-        res.send('Home response');
+app.use('/api/authentication', authRouter);
+app.use('/api/user', userRouter);
+app.use('/api/story', storyRouter);
+ app.get('/', (req, res) => {
+        res.json({root:'running'});
     });
-app.get('/api/insecure', (req, res) => {
-    res.send('InSecure response');
-});
-app.get('/api/secure',
-    passport.authenticate(['jwt'], { session: false }),
-    (req, res) => {
-        res.send(req.user);
-    });
+
 
 const port = config.get('http.port');
 app.listen(port, () => {
-    console.log('Server listening on port ' + port);
+    console.log('Server listening on port http://localhost:' + port);
 });

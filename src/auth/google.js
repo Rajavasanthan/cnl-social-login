@@ -1,7 +1,7 @@
 const passport = require('passport');
 const passportGoogle = require('passport-google-oauth');
 const config = require('../config');
-const User = require('../user');
+const User = require('../model/user');
 
 const passportConfig = {
     clientID: '459875133220-6b57t8jq619cnaab7v99f4ru16308u7m.apps.googleusercontent.com',
@@ -20,7 +20,8 @@ if (passportConfig.clientID) {
                 User.create({
                     name:profile.displayName,
                     provider:'google',
-                    uid:profile.id
+                    uid:profile.id,
+                    photoUrl:profile.photos[0]
                 }).then((user )=> {
                  return  done(null, user)
                  console.log('eita exec hoy nken!!user')
