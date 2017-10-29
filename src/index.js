@@ -4,9 +4,9 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 
-const authRouter = require('./auth_route');
-const userRouter = require('./user_route');
-const storyRouter = require('./story_route');
+const authRouter = require('./routes/auth_route');
+const userRouter = require('./routes/user_route');
+const storyRouter = require('./routes/story_route');
 
 const mongoDB = 'mongodb://localhost/jwtLearn';
 mongoose.connect(mongoDB, {

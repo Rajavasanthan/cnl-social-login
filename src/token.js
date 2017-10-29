@@ -3,7 +3,7 @@ const config = require('./config');
 
 // Generate an Access Token for the given User ID
 function generateAccessToken(userId) {
-    const expiresIn = '1 hour';
+    const expiresIn = '7d';
     const audience = 'public'
     const issuer = 'knight3rrant';
     const secret = 'secretone';

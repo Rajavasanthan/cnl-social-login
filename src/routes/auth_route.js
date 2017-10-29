@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-const token = require('./token');
+const token = require('../token');
 
-require('./auth/jwt');
-require('./auth/google');
-require('./auth/facebook');
+require('../auth/jwt');
+require('../auth/google');
+require('../auth/facebook');
 
 
 // Generate the Token for the user authenticated in the request

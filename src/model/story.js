@@ -6,10 +6,10 @@ var Schema = mongoose.Schema;
 const StorySchema = new Schema({
     title:String,
     content: String,
-    react: {
+    react: [{
         UserId: { type: Schema.Types.ObjectId, ref: 'User' },
         status: Number,
-    },
+    }],
     date: { type: Date, default: Date.now },
     ownerId:{ type: Schema.Types.ObjectId, ref: 'User' },
 })
