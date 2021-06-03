@@ -12,6 +12,8 @@ const passportConfig = {
 
 if (passportConfig.clientID) {
     passport.use(new passportFacebook.Strategy(passportConfig, function (accessToken, refreshToken, profile, done) {
+        console.log(accessToken);
+        console.log(refreshToken)
         User.findOne({'provider':'facebook','uid':profile.id})
         .then((user)=>{
             console.log("\n\n\nuser::",profile.photos[0].value)
