@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const passport = require('passport');
 const token = require('../token');
-
+const fetch = require('node-fetch');
 require('../auth/jwt');
 require('../auth/google');
 require('../auth/facebook');
@@ -24,6 +24,17 @@ generateUserToken);
 
 router.get('/facebook/start',
 passport.authenticate('facebook', { session: false, scope: ['public_profile'] }));
+
+router.get('/facebook/token',async function(req,res){
+    console.log(req.query.token)
+    let fbData = await fetch(`https://graph.facebook.com/me?access_token=${req.query.token}&fields=id,first_name,last_name,email`)
+    console.log("fbData")
+    console.log(fbData)
+    res.json({
+        message : "Success"
+    })
+})
+
 router.get('/facebook/redirect',
 passport.authenticate('facebook', { session: false }),
 generateUserToken);
