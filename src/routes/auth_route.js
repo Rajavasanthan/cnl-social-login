@@ -29,7 +29,8 @@ router.get('/facebook/token',async function(req,res){
     console.log(req.query.token)
     let fbData = await fetch(`https://graph.facebook.com/me?access_token=${req.query.token}&fields=id,first_name,last_name,email`)
     console.log("fbData")
-    console.log(fbData.json())
+    let data = await fbData.json()
+    console.log(data)
     res.json({
         message : "Success"
     })
