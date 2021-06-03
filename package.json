@@ -2,7 +2,9 @@
   "name": "social-logins-spa",
   "version": "1.0.0",
   "main": "src/index.js",
-  "script": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
   "author": "Golam Rabbani",
   "license": "MIT",
   "dependencies": {
@@ -11,7 +13,7 @@
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
-    "mongoose": "^4.11.12",
+    "mongoose": "^5.12.12",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",

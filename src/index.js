@@ -9,9 +9,7 @@ const userRouter = require('./routes/user_route');
 const storyRouter = require('./routes/story_route');
 
 const mongoDB = 'mongodb+srv://vasanth:vasanth7788@cluster0.wwzno.mongodb.net/sociallogin?retryWrites=true&w=majority';
-mongoose.connect(mongoDB, {
-    useMongoClient: true
-  });
+mongoose.connect(mongoDB, { useNewUrlParser: true,useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
