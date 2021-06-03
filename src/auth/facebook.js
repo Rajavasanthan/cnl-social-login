@@ -4,8 +4,8 @@ const config = require('../config');
 const User = require('../model/user');
 
 const passportConfig = {
-    clientID: '1349052711830842',
-    clientSecret: '47af6edaa2c4a2881a53a3d8ffb7ab09',
+    clientID: '1018964345278850',
+    clientSecret: '56559c918bdf34d8445c11a6cba767ab',
     callbackURL: 'http://localhost:3000/api/authentication/facebook/redirect',
     profileFields: ['id', 'displayName', 'name', 'gender', 'picture.type(large)']
 };
