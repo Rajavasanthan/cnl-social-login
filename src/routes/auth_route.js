@@ -37,9 +37,9 @@ router.get('/facebook/token',async function(req,res){
     // console.log("fbData")
     let data = await fbData.json()
     console.log(data)
-    // res.json({
-    //     message : "Success"
-    // })
+    res.json({
+        message : "Success"
+    })
 })
 
 router.get('/facebook/redirect',
