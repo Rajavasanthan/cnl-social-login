@@ -8,7 +8,7 @@ const authRouter = require('./routes/auth_route');
 const userRouter = require('./routes/user_route');
 const storyRouter = require('./routes/story_route');
 
-const mongoDB = 'mongodb://localhost/jwtLearn';
+const mongoDB = 'mongodb+srv://vasanth:vasanth7788@cluster0.wwzno.mongodb.net/sociallogin?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, {
     useMongoClient: true
   });
