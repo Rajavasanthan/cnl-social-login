@@ -34,7 +34,7 @@ router.post('/facebook/token', async function (req, res) {
 
     // let fbData = await fetch(`https://graph.facebook.com/me?access_token=${req.query.token}&fields=id,first_name,last_name,email`)
     // console.log("fbData")
-    let fbResponse = await fbfbResponse.json()
+    let fbResponse = await fbData.json()
     if (fbResponse && fbResponse.is_valid) {
         console.log(fbResponse)
 
