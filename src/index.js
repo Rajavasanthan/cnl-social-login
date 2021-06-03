@@ -33,6 +33,6 @@ app.use('/api/story', storyRouter);
 
 
 const port = config.get('http.port');
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log('Server listening on port http://localhost:' + port);
 });
